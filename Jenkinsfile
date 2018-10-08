@@ -1,14 +1,11 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'M3'
-    }
-
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B package'
+                sh 'make' (1)
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true (2)
             }
         }
     }
