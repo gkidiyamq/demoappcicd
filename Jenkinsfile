@@ -1,12 +1,12 @@
 pipeline {
   agent any
-  tools {
-    maven 'M3'
-  }
+
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        withMaven(mavenOpts: MAVEN_OPTS, maven: 'M3', mavenLocalRepo: MAVEN_LOCAL_REPOSITORY, mavenSettingsConfig: MAVEN_SETTINGS) {
+            sh "mvn package"
+        }
       }
     }
   }
