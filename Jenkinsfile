@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven() {
-            sh "mvnw clean install dockerfile:build"
+            sh "mvn clean install dockerfile:build"
         }
       }
     }
